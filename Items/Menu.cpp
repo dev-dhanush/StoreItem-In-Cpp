@@ -10,7 +10,7 @@ int Menu::menu()
 	cout<<"\n--------------------";
 	cout<<"\n Items Informations ";
 	cout<<"\n--------------------";
-	cout<<"\n\t......MENU......";
+	cout<<"\n  ......MENU......";
 	cout<<"\n1.Add Item";
 	cout<<"\n2.List Items";
 	cout<<"\n0.Quit";

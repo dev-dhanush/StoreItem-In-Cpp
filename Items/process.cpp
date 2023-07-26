@@ -1,4 +1,5 @@
 #include <iostream>
+#include <conio.h>
 #include "ProcessHeader.h"
 #include "ItemsHeader.h"
 
@@ -8,6 +9,8 @@ using namespace ItemsInfo;
 
 void Process1::start()
 {
+	while(1){
+	system("cls");
 	int cho=menu.menu();
 	Items item;
 	switch(cho)
@@ -18,11 +21,18 @@ void Process1::start()
 		
 		case 2:
 		item.listItem();
+		getch();
 		break;
 		
 		case 0:
 		return;
 		break;
+		
+		default:
+		cout<<"\nInvalid Input Please, Enter Valid Input...";
+		getch();
+		break;
+	}
 	}
 }
 
