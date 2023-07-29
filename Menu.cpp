@@ -1,3 +1,4 @@
+#include <conio.h>
 #include <iostream>
 #include "MenuHeader.h"
 
@@ -23,5 +24,43 @@ int Menu::menu(){
 	cin>>opt;
 	
 	return opt;
+}
+
+void Menu::start()
+{
+	while(1)
+	{
+		system("cls");
+		int cho=menu();
+		
+		switch(cho)
+		{
+			case 1:
+			break;
+			
+			case 2:
+			break;
+			
+			case 3:
+			break;
+			
+			case 4:
+			break;
+			
+			case 5:
+			break;
+			
+			case 0:
+			return;
+			break;
+			
+			default:
+			cout<<"\nInvalid Input. Please Enter the Valid Input....";
+			cout<<"\nPress any key to continue...";
+			getch();
+			break;
+			
+		}
+	}
 }
 

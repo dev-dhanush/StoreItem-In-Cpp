@@ -1,8 +1,11 @@
 namespace MainMenu{
 class Menu{
-	public:
+	private:
 	int menu();
-
+	
+	public:
+	void start();
+	
 };
 
 }

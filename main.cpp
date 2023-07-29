@@ -8,7 +8,7 @@ int main()
 {
 	Menu menu;
 	
-	int cho=menu.menu();
+	menu.start();
 	
 }
 
