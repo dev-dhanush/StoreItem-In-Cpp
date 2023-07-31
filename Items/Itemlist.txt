@@ -3,3 +3,4 @@
 3 Eraser
 4 Books
 5 Paper
+6 Notes

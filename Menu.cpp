@@ -1,9 +1,11 @@
 #include <conio.h>
 #include <iostream>
 #include "MenuHeader.h"
+#include "StoreItem main.h"
 
 using namespace std;
 using namespace MainMenu;
+using namespace StoreItems;
 
 int Menu::menu(){
 	int opt;
@@ -36,18 +38,24 @@ void Menu::start()
 		switch(cho)
 		{
 			case 1:
+			stk.ReciptEntry();
+			getch();
 			break;
 			
 			case 2:
+			stk.IssueEntry();
 			break;
 			
 			case 3:
+			stk.StockList();
 			break;
 			
 			case 4:
+			stk.TransHis();
 			break;
 			
 			case 5:
+			stk.ViewStoreItem();
 			break;
 			
 			case 0:

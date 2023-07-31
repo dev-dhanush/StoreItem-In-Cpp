@@ -6,7 +6,7 @@ class Items
 	{	 
 	private:
 	int itemCode;
-	char itemName[20];
+	char itemName[15];
 	
 	public:
 	void addItem();
