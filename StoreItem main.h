@@ -28,6 +28,8 @@ class SubFunc
 	public:
 	int getName(int code,char* p);
 	float getTotal(int code);
+	int findCode(int code);
+	float findTotal(int code,float& recipt1,float& issue1);
 	
 };
 

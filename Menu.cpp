@@ -39,7 +39,6 @@ void Menu::start()
 		{
 			case 1:
 			stk.ReciptEntry();
-			getch();
 			break;
 			
 			case 2:
@@ -62,11 +61,11 @@ void Menu::start()
 			return;
 			break;
 			
-			default:
+			/*default:
 			cout<<"\nInvalid Input. Please Enter the Valid Input....";
 			cout<<"\nPress any key to continue...";
 			getch();
-			break;
+			break;*/
 			
 		}
 	}

@@ -9,15 +9,34 @@ using namespace StoreItems;
 
 void Stock::ReciptEntry()
 {
+	int codecheck;
 	char name[15];
 	SubFunc sf;
 	char cho;
+	
 	//indicate this is Issue transaction
 	stock.transType='R';
+	
 	//Get the item code for issue item
 	cout<<"\nEnter the Item Code :";
 	cin>>stock.itemCode;
 	
+	//checking user don't enter character
+	if(stock.itemCode>=0 && stock.itemCode<=9)
+	{
+	//checking item code is correct
+	codecheck=sf.findCode(stock.itemCode);	  
+	}else
+	return;
+	   
+	if(codecheck==0)
+	{
+	cout<<"\nInvalid Item Code";
+	cout<<"\n\nPress any key to continue...";
+	getch();
+	return;
+	}
+		
 	//check the item name is correct or not
 	sf.getName(stock.itemCode,name);
 	cout<<"\nThe Item Name : "<<name<<endl;
@@ -52,6 +71,7 @@ void Stock::ReciptEntry()
 
 void Stock::IssueEntry()
 {
+	int codecheck;
 	char name[15];
 	SubFunc sf;
 	char cho;
@@ -61,6 +81,16 @@ void Stock::IssueEntry()
 	cout<<"\nEnter the Item Code :";
 	cin>>stock.itemCode;
 	
+	//checking item code is correct
+	codecheck=sf.findCode(stock.itemCode);
+	if(codecheck==0)
+	{
+	cout<<"\nInvalid Item Code";
+	cout<<"\n\npress any key to continue...";
+	getch();
+	return;
+	}
+	
 	//check the item name is correct or not
 	sf.getName(stock.itemCode,name);
 	cout<<"\nThe Item Name : "<<name<<endl;
@@ -69,7 +99,6 @@ void Stock::IssueEntry()
 	
 	
 	if(cho=='y'||cho=='Y'){
-	
 	//Get the quantity
 	cout<<"\nEnter the Quantity of the Item :";
 	cin>>stock.qty;
@@ -100,11 +129,17 @@ void Stock::StockList()
 	string name;
 	ifstream file;
 	file.open(".//Items//Itemlist.txt",ios::in);
+	cout<<"\n ------------------------------------------------";
+	cout<<"\n"<<" |"<<setw(27)<<fixed<<"STOCK LIST"<<setw(20)<<"|";
+	cout<<"\n ------------------------------------------------\n";
+	cout<<" | "<<setw(10)<<left<<"Item Code"<<" | "<<setw(15)<<left<<"Item Name"<<" | "<<setw(14)<<"Stock"<<"|";
+	cout<<"\n ------------------------------------------------";
 	while(!file.eof())
 	{
 		file>>code>>name;
-		cout<<"\n"<<code<<" "<<name<<sb.getTotal(code);
+		cout<<"\n"<<" | "<<setw(10)<<left<<code<<" | "<<setw(15)<<left<<name<<" | "<<setw(14)<<sb.getTotal(code)<<"|";
 	}
+	cout<<"\n ------------------------------------------------";
 	
 	file.close();
 	
@@ -115,26 +150,41 @@ void Stock::StockList()
 
 void Stock::TransHis()	//reading the stock list
 {
-	SubFunc sb;		//object for get name func
-	int code;
+	SubFunc sf;		//object for get name func
+	int code,codecheck;
 	char name[15];
 	
 	//get the item code from user
 	cout<<"\nEnter Item code :";
 	cin>>code;
 	
+	//checking item code is correct
+	codecheck=sf.findCode(code);
+	if(codecheck==0)
+	{
+	cout<<"\nInvalid Item Code";
+	cout<<"\n\npress any key to continue...";
+	getch();
+	return;
+	}
+	
+	//find total for recipt and issue
+	float totalRecipt=0,totalIssue=0,total=0;
+	total=sf.findTotal(code,totalRecipt,totalIssue);
+	
 	//get the item using item code
-	sb.getName(code,name);
+	sf.getName(code,name);
 	
 	//opened the file in binary mode
 	ifstream file;
 	file.open("Stock.bin",ios::in|ios::binary);
 	
 	//print the item name	
-	cout<<"\n\n-----------------------------------\n";
+	cout<<"\n-----------------------------------\n";
 	cout<<setw(20)<<name;
 	cout<<"\n-----------------------------------";  
-	cout<<"\nTransType"<<setw(14)<<"Recipt"<<setw(11)<<"Issue"<<endl;
+	cout<<"\n"<<"TransType"<<setw(14)<<"Recipt"<<setw(11)<<"Issue";
+	cout<<"\n-----------------------------------";
 	
 	//print the trans history for recipt and issue in order
 	while(file.read((char*)&stock, sizeof(stock)))
@@ -147,6 +197,14 @@ void Stock::TransHis()	//reading the stock list
 	}	 
 	}
 	
+	//printing total stocks
+	cout<<"\n-----------------------------------";  
+	cout<<"\n"<<setw(17)<<left<<"Total:"<<setw(10)<<totalRecipt<<setw(7)<<right<<totalIssue;
+	cout<<"\n-----------------------------------";
+	cout<<"\n"<<setw(20)<<right<<"Closing stock : "<<total;
+	cout<<"\n-----------------------------------";
+	
+	//closing file
 	file.close();
 	
 	//just wait the screen
