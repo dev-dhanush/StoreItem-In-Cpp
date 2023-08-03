@@ -30,10 +30,13 @@ int Menu::menu(){
 
 void Menu::start()
 {
-	while(1)
+	int cho;
+	do
 	{
 		system("cls");
-		int cho=menu();
+		cho=menu();
+		
+		if(cho==0) break;
 		
 		switch(cho)
 		{
@@ -57,17 +60,13 @@ void Menu::start()
 			stk.ViewStoreItem();
 			break;
 			
-			case 0:
-			return;
-			break;
-			
-			/*default:
+			default:
 			cout<<"\nInvalid Input. Please Enter the Valid Input....";
 			cout<<"\nPress any key to continue...";
 			getch();
-			break;*/
+			break;
 			
 		}
-	}
+	}while(cho!=0);
 }
 

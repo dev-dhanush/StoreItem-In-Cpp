@@ -12,7 +12,7 @@ void Stock::ReciptEntry()
 	int codecheck;
 	char name[15];
 	SubFunc sf;
-	char cho;
+	char che;
 	
 	//indicate this is Issue transaction
 	stock.transType='R';
@@ -21,17 +21,20 @@ void Stock::ReciptEntry()
 	cout<<"\nEnter the Item Code :";
 	cin>>stock.itemCode;
 	
-	//checking user don't enter character
-	if(stock.itemCode>=0 && stock.itemCode<=9)
-	{
-	//checking item code is correct
-	codecheck=sf.findCode(stock.itemCode);	  
-	}else
-	return;
+	//If user enter the character then show the error and return from the function
+	if(cin.fail()){
+		cin.clear();
+		cin.ignore();	 
+		cout<<"\nItem code only accept Numeric Values...";
+		getch();
+		return;	   	   
+	}
 	   
+	//checking item code is correct
+	codecheck=sf.findCode(stock.itemCode);	   
 	if(codecheck==0)
 	{
-	cout<<"\nInvalid Item Code";
+	cout<<"\nItem Code does not exist";
 	cout<<"\n\nPress any key to continue...";
 	getch();
 	return;
@@ -41,10 +44,10 @@ void Stock::ReciptEntry()
 	sf.getName(stock.itemCode,name);
 	cout<<"\nThe Item Name : "<<name<<endl;
 	cout<<"\nName is it correct? : (Y/N)";
-	cin>>cho;
+	cin>>che;
 	
 	
-	if(cho=='y'||cho=='Y'){
+	if(che=='y'||che=='Y'){
 	
 	//Get the quantity
 	cout<<"\nEnter the Quantity of the Item :";
@@ -81,11 +84,20 @@ void Stock::IssueEntry()
 	cout<<"\nEnter the Item Code :";
 	cin>>stock.itemCode;
 	
+	//If user enter the character then show the error and return from the function
+	if(cin.fail()){
+		cin.clear();
+		cin.ignore();	 
+		cout<<"\nItem code only accept Numeric Values...";
+		getch();
+		return;	   	   
+	}
+
 	//checking item code is correct
 	codecheck=sf.findCode(stock.itemCode);
 	if(codecheck==0)
 	{
-	cout<<"\nInvalid Item Code";
+	cout<<"\nItem Code does not exit";
 	cout<<"\n\npress any key to continue...";
 	getch();
 	return;
@@ -158,11 +170,20 @@ void Stock::TransHis()	//reading the stock list
 	cout<<"\nEnter Item code :";
 	cin>>code;
 	
+	//If user enter the character then show the error and return from the function
+	if(cin.fail()){
+		cin.clear();
+		cin.ignore();	 
+		cout<<"\nItem code only accept Numeric Values...";
+		getch();
+		return;	   	   
+	}
+	
 	//checking item code is correct
 	codecheck=sf.findCode(code);
 	if(codecheck==0)
 	{
-	cout<<"\nInvalid Item Code";
+	cout<<"\nItem Code does not exist";
 	cout<<"\n\npress any key to continue...";
 	getch();
 	return;
@@ -191,15 +212,15 @@ void Stock::TransHis()	//reading the stock list
 	{
 	if(code==stock.itemCode){
 		if(stock.transType=='R')
-		cout<<"\n"<<stock.transType<<setw(22)<<stock.qty;	
+		cout<<"\n"<<stock.transType<<setw(22)<<fixed<<setprecision(2)<<stock.qty;	
 		else if(stock.transType=='I')
-		cout<<"\n"<<stock.transType<<setw(33)<<stock.qty;			
+		cout<<"\n"<<stock.transType<<setw(33)<<fixed<<setprecision(2)<<stock.qty;	  	  
 	}	 
 	}
 	
 	//printing total stocks
 	cout<<"\n-----------------------------------";  
-	cout<<"\n"<<setw(17)<<left<<"Total:"<<setw(10)<<totalRecipt<<setw(7)<<right<<totalIssue;
+	cout<<"\n"<<setw(16)<<left<<"Total:"<<setw(10)<<totalRecipt<<setw(8)<<right<<totalIssue;
 	cout<<"\n-----------------------------------";
 	cout<<"\n"<<setw(20)<<right<<"Closing stock : "<<total;
 	cout<<"\n-----------------------------------";
@@ -215,7 +236,7 @@ void Stock::TransHis()	//reading the stock list
 void Stock::ViewStoreItem()
 {
 
-	cout<<"\nView Stroed Items";
+	cout<<"\n     Stored Items";
 	cout<<"\n---------------------\n";
 	ifstream file;
 	file.open(".//Items//Itemlist.txt",ios::in);
@@ -223,7 +244,7 @@ void Stock::ViewStoreItem()
 	while(getline(file,read))
 	{
 	
-	cout<<read<<endl;
+	cout<<"      "<<read<<endl;
 	
 	}
 	file.close();
