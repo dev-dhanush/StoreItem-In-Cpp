@@ -18,6 +18,9 @@ void Items::addItem()
 	file.open("Itemlist.txt",ios::app);
 	file<<itemCode<<" "<<itemName<<"\n";
 	file.close();
+	
+	cout<<"\n\npress any key to contunue...";
+	getch();
 }
 
 void Items::listItem()
@@ -25,11 +28,17 @@ void Items::listItem()
 	string read;
 	ifstream file;
 	file.open("Itemlist.txt",ios::in);
+	cout<<"\n---------------------";
+	cout<<"\n    STORED ITEMS";
+	cout<<"\n---------------------\n";
 	while(getline(file,read))
 	{
 		cout<<read<<endl;
 	}
 	
 	file.close();
+	
+	cout<<"\n\npress any key to continue...";
+	getch();
 }
 

@@ -21,7 +21,6 @@ void Process1::start()
 		
 		case 2:
 		item.listItem();
-		getch();
 		break;
 		
 		case 0:

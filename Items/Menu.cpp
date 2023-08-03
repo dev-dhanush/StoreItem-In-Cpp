@@ -15,7 +15,7 @@ int Menu::menu()
 	cout<<"\n2.List Items";
 	cout<<"\n0.Quit";
 	
-	cout<<"\n\nEnter Your Choice...";
+	cout<<"\n\nEnter Your Choice : ";
 	cin>>opt;
 	
 	return opt;
