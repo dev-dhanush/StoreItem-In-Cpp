@@ -1,3 +1,6 @@
+#ifndef PROCESSHEADER_H
+#define PROCESSHEADER_H 
+
 #include "Menu.h"
 #include "ItemsHeader.h"
 using namespace MainMenu;
@@ -13,4 +16,6 @@ namespace Process
 		void start();
 	};
 }
+
+#endif
 
