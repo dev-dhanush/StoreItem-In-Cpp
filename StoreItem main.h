@@ -1,6 +1,6 @@
 #ifndef STOREITEM_H
 #define STOREITEM_H
-#include <string.h>
+
 namespace StoreItems
 {
 typedef struct Items{

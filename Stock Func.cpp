@@ -142,14 +142,14 @@ void Stock::StockList()
 	ifstream file;
 	file.open(".//Items//Itemlist.txt",ios::in);
 	cout<<"\n ------------------------------------------------";
-	cout<<"\n"<<" |"<<setw(27)<<fixed<<"STOCK LIST"<<setw(20)<<"|";
+	cout<<"\n"<<" |"<<setw(27)<<fixed<<right<<"STOCK LIST"<<setw(20)<<"|";
 	cout<<"\n ------------------------------------------------\n";
-	cout<<" | "<<setw(10)<<left<<"Item Code"<<" | "<<setw(15)<<left<<"Item Name"<<" | "<<setw(14)<<"Stock"<<"|";
+	cout<<" | "<<setw(10)<<fixed<<left<<"Item Code"<<" | "<<setw(15)<<fixed<<left<<"Item Name"<<" | "<<setw(14)<<fixed<<"Stock"<<"|";
 	cout<<"\n ------------------------------------------------";
 	while(!file.eof())
 	{
 		file>>code>>name;
-		cout<<"\n"<<" | "<<setw(10)<<left<<code<<" | "<<setw(15)<<left<<name<<" | "<<setw(14)<<sb.getTotal(code)<<"|";
+		cout<<"\n"<<" | "<<setw(10)<<fixed<<left<<code<<" | "<<setw(15)<<fixed<<left<<name<<" | "<<setw(14)<<fixed<<sb.getTotal(code)<<"|";
 	}
 	cout<<"\n ------------------------------------------------";
 	
@@ -193,7 +193,7 @@ void Stock::TransHis()	//reading the stock list
 	float totalRecipt=0,totalIssue=0,total=0;
 	total=sf.findTotal(code,totalRecipt,totalIssue);
 	
-	//get the item using item code
+	//get the item name using item code
 	sf.getName(code,name);
 	
 	//opened the file in binary mode
@@ -202,9 +202,9 @@ void Stock::TransHis()	//reading the stock list
 	
 	//print the item name	
 	cout<<"\n-----------------------------------\n";
-	cout<<setw(20)<<name;
+	cout<<fixed<<right<<setw(20)<<name;
 	cout<<"\n-----------------------------------";  
-	cout<<"\n"<<"TransType"<<setw(14)<<"Recipt"<<setw(11)<<"Issue";
+	cout<<"\n"<<fixed<<"TransType"<<fixed<<right<<setw(14)<<"Recipt"<<fixed<<setw(11)<<"Issue";
 	cout<<"\n-----------------------------------";
 	
 	//print the trans history for recipt and issue in order
@@ -212,17 +212,17 @@ void Stock::TransHis()	//reading the stock list
 	{
 	if(code==stock.itemCode){
 		if(stock.transType=='R')
-		cout<<"\n"<<stock.transType<<setw(22)<<fixed<<setprecision(2)<<stock.qty;	
+		cout<<"\n"<<fixed<<stock.transType<<setw(22)<<right<<fixed<<setprecision(2)<<stock.qty;	  
 		else if(stock.transType=='I')
-		cout<<"\n"<<stock.transType<<setw(33)<<fixed<<setprecision(2)<<stock.qty;	  	  
+		cout<<"\n"<<fixed<<stock.transType<<setw(33)<<fixed<<right<<setprecision(2)<<stock.qty;	    	
 	}	 
 	}
 	
 	//printing total stocks
 	cout<<"\n-----------------------------------";  
-	cout<<"\n"<<setw(16)<<left<<"Total:"<<setw(10)<<totalRecipt<<setw(8)<<right<<totalIssue;
+	cout<<"\n"<<fixed<<setw(16)<<left<<"Total:"<<setw(10)<<fixed<<totalRecipt<<setw(8)<<fixed<<right<<totalIssue;
 	cout<<"\n-----------------------------------";
-	cout<<"\n"<<setw(20)<<right<<"Closing stock : "<<total;
+	cout<<"\n"<<fixed<<setw(20)<<right<<"Closing stock : "<<total;
 	cout<<"\n-----------------------------------";
 	
 	//closing file

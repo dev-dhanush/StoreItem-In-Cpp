@@ -10,9 +10,9 @@ using namespace StoreItems;
 int Menu::menu(){
 	int opt;
 	
-	cout<<"\n-----------------------";
-	cout<<"\nStore Item Project     ";
-	cout<<"\n-----------------------";
+	cout<<"\n------------------------";
+	cout<<"\n    STOCK MANAGEMENT     ";
+	cout<<"\n------------------------";
 	cout<<"\n\n\tMenu:";
 	cout<<"\n     -----------      ";
 	cout<<"\n1.Reciept Entry";
